@@ -72,8 +72,6 @@ If a training answer crosses into validation, this assertion stops the program. 
 
 Historical lags and chronological evaluation are standard time-series practices. They are understandable and reproducible; this milestone does not claim that the chosen lags or split fractions are optimal. A week of history sacrifices the first week of forecast examples. Using current readings assumes those measurements are available at forecast time. Later model comparisons must establish any accuracy benefit.
 
-The reviewed source uses the status `reviewed_chronological_split`. No other listed topic has been established as sharing this dataset, so this milestone does not assert that coordination with another group is required.
-
 ## Oral progress statement
 
 We have prepared a thirty-minute-ahead prediction task for three Tetouan electricity zones. Inputs contain current readings, historical consumption and known calendar information. We use chronological training, validation and test sets and check that future labels do not cross their boundaries. The preparation stage runs successfully; model training and accuracy comparisons are the next stage.
