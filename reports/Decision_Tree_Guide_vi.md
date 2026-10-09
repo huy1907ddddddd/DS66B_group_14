@@ -93,7 +93,7 @@ search.fit(X_train, y_train)
 
 Các cấu hình còn lại nằm trong `tree_complexity_search.csv`. Cấu hình đã chọn là **độ sâu 16, tối thiểu 20 mẫu/lá**. Đây là tốt nhất trong 12 cấu hình đã thử với cách chia thời gian này; không gọi nó là tốt nhất tuyệt đối cho mọi tham số có thể có.
 
-![Biểu đồ chọn cấu hình cây](Tree_Complexity_Search.png)
+![Biểu đồ chọn cấu hình cây](figures/tree_complexity_search.png)
 
 Mỗi đường giữ cố định độ sâu và thay đổi số mẫu tối thiểu trong lá. Chấm cam là MAE thấp nhất trong bảng. Biểu đồ minh họa kết quả; số MAE là quy tắc quyết định, không chọn bằng mắt.
 

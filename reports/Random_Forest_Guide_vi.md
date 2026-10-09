@@ -101,7 +101,7 @@ Sau khi chọn, nhóm học lại rừng thắng bằng toàn bộ 35.680 mẫu 
 
 Cấu hình tốt nhất đã trùng cấu hình benchmark ban đầu: sâu 14, ít nhất 5 mẫu/lá. Điều này là kết quả có ích: nhóm đã kiểm tra, thay vì mặc định con số ban đầu là đúng.
 
-![Biểu đồ chọn cấu trúc Random Forest](Forest_Structure_Search.png)
+![Biểu đồ chọn cấu trúc Random Forest](figures/forest_structure_search.png)
 
 Mỗi đường cố định độ sâu và đổi số mẫu tối thiểu mỗi lá. Chấm cam là cấu hình có MAE thấp nhất trong bảng. Số MAE quyết định lựa chọn; biểu đồ chỉ giúp nhìn xu hướng.
 
