@@ -1,6 +1,15 @@
 {
   "forecast_horizon_minutes": 30,
+  "high_demand_training_quantile": 0.9,
   "chronological_train_fraction": 0.7,
   "chronological_validation_fraction": 0.15,
-  "split_status": "reviewed_chronological_split"
+  "random_seed": 42,
+  "split_status": "provisional_until_agreed_with_other_groups",
+  "future_modules": {
+    "neural_forecasting_ch11": "planned",
+    "regime_adaptation_ch12": "planned",
+    "chapter_13": "awaiting_course_material",
+    "dimensionality_reduction_ch14": "planned",
+    "anomaly_fallback_ch15": "planned"
+  }
 }
