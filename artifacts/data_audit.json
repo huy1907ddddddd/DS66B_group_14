@@ -1,0 +1,29 @@
+{
+  "source": "https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city",
+  "source_csv_sha256": "ca8b2f30cf07dd872cb7f2aa45dac110ee38dbe5fc5910a6ff4bcc530dae3a40",
+  "rows": 52416,
+  "columns": [
+    "timestamp",
+    "temperature",
+    "humidity",
+    "wind_speed",
+    "general_diffuse",
+    "diffuse",
+    "zone_1",
+    "zone_2",
+    "zone_3"
+  ],
+  "start": "2017-01-01 00:00:00",
+  "end": "2017-12-30 23:50:00",
+  "missing_cells": 0,
+  "duplicate_rows": 0,
+  "duplicate_timestamps": 0,
+  "timestamps_sorted": true,
+  "irregular_intervals": 0,
+  "missing_expected_timestamps": 0,
+  "nonfinite_numeric_cells": 0,
+  "negative_target_cells": 0,
+  "target_units": "Not specified in the UCI variables table; use original source units.",
+  "uci_metadata_instances": 52417,
+  "metadata_count_note": "The CSV row count is authoritative for this experiment; UCI metadata may include the header."
+}

@@ -1,0 +1,46 @@
+{
+  "method": "train_only_expanding_time_cv",
+  "folds": [
+    {
+      "fold": 1,
+      "train_rows": 8917,
+      "evaluation_rows": 8920,
+      "last_train_target": "2017-03-10 22:30:00",
+      "first_evaluation_origin": "2017-03-10 22:40:00"
+    },
+    {
+      "fold": 2,
+      "train_rows": 17837,
+      "evaluation_rows": 8920,
+      "last_train_target": "2017-05-11 21:10:00",
+      "first_evaluation_origin": "2017-05-11 21:20:00"
+    },
+    {
+      "fold": 3,
+      "train_rows": 26757,
+      "evaluation_rows": 8920,
+      "last_train_target": "2017-07-12 19:50:00",
+      "first_evaluation_origin": "2017-07-12 20:00:00"
+    }
+  ],
+  "gap_rows": 3,
+  "train_rows": 35680,
+  "validation_rows": 7859,
+  "test_evaluated": false,
+  "selected": {
+    "Ridge": {
+      "alpha": 0.0001,
+      "boundary_winner": true
+    },
+    "Lasso": {
+      "alpha": 0.31622776601683794,
+      "boundary_winner": false
+    }
+  },
+  "validation_winner": "Linear",
+  "scoring": "mean absolute error across three zones, after clipping negative predictions to zero",
+  "search_candidates": {
+    "Ridge": 8,
+    "Lasso": 8
+  }
+}

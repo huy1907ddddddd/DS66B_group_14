@@ -1,0 +1,53 @@
+{
+  "stage": "logistic_alert_development",
+  "false_alarm_budget": 0.05,
+  "label_quantile": 0.9,
+  "zones": {
+    "zone_1": {
+      "high_demand_threshold": 43101.95745,
+      "logistic_cutoff": 0.01783825439535677,
+      "linear_score_cutoff": 40090.28496879397,
+      "validation_positives": 796,
+      "iterations": 123,
+      "first_example": {
+        "intercept": -22.335202563756717,
+        "linear_score": 12.291296936435103,
+        "probability_score": 0.9999954084896143
+      },
+      "operational_status": "development only"
+    },
+    "zone_2": {
+      "high_demand_threshold": 27262.02532,
+      "logistic_cutoff": 0.18406749670243733,
+      "linear_score_cutoff": 26081.773747305324,
+      "validation_positives": 875,
+      "iterations": 107,
+      "first_example": {
+        "intercept": -19.045087814100928,
+        "linear_score": 6.049202355661901,
+        "probability_score": 0.9976458117882635
+      },
+      "operational_status": "development only"
+    },
+    "zone_3": {
+      "high_demand_threshold": 28402.3431,
+      "logistic_cutoff": 1.0074400867345011e-10,
+      "linear_score_cutoff": 20011.8412992889,
+      "validation_positives": 0,
+      "iterations": 89,
+      "first_example": {
+        "intercept": -22.626160316924743,
+        "linear_score": -18.13044527155179,
+        "probability_score": 1.3367421989990003e-08
+      },
+      "operational_status": "not validated; retain always-normal placeholder"
+    }
+  },
+  "features": 48,
+  "train_rows": 35680,
+  "validation_rows": 7859,
+  "test_evaluated": false,
+  "probability_calibration_verified": false,
+  "same_validation_used_for_threshold_and_metrics": true,
+  "contribution_reconstruction_verified": true
+}

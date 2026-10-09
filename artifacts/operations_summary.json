@@ -1,0 +1,32 @@
+{
+  "stage": "chronological_policy_development",
+  "boundary": "2017-10-10 02:00:00",
+  "calibration_rows": 3926,
+  "assessment_rows": 3930,
+  "purged_rows": 3,
+  "calibration_last_target": "2017-10-10 01:50:00",
+  "assessment_first_origin": "2017-10-10 02:00:00",
+  "test_re_evaluated": false,
+  "previously_inspected_validation": true,
+  "units": "hypothetical penalty points per 10-minute sample; not money",
+  "zones": {
+    "zone_1": {
+      "high_demand_threshold": 43101.95745,
+      "calibration_high": 506,
+      "assessment_high": 290,
+      "policy_supported": true
+    },
+    "zone_2": {
+      "high_demand_threshold": 27262.02532,
+      "calibration_high": 274,
+      "assessment_high": 601,
+      "policy_supported": true
+    },
+    "zone_3": {
+      "high_demand_threshold": 28402.3431,
+      "calibration_high": 0,
+      "assessment_high": 0,
+      "policy_supported": false
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "selected": {
+    "max_depth": 16,
+    "min_samples_leaf": 20
+  },
+  "search_candidates": 12,
+  "folds": 3,
+  "gap_rows": 3,
+  "train_rows": 35680,
+  "validation_rows": 7859,
+  "test_evaluated": false,
+  "selected_cv_mae": 1278.7037552337133,
+  "selected_tree_depth": 16,
+  "selected_tree_leaves": 1360,
+  "displayed_leaf_id": 1759,
+  "displayed_leaf_training_samples": 20,
+  "leaf_mean_matches_prediction": true,
+  "comparison": [
+    {
+      "model": "Linear",
+      "max_depth": null,
+      "min_samples_leaf": null,
+      "validation_mae": 318.9880780701971
+    },
+    {
+      "model": "Tree initial",
+      "max_depth": 12.0,
+      "min_samples_leaf": 20.0,
+      "validation_mae": 1543.1489225723333
+    },
+    {
+      "model": "Tree selected",
+      "max_depth": 16.0,
+      "min_samples_leaf": 20.0,
+      "validation_mae": 1542.9558449387816
+    }
+  ],
+  "limitations": [
+    "Best explored depth and leaf size under this fixed feature set and squared-error split criterion.",
+    "A path for one forecast illustrates the tree; it does not explain all forecasts.",
+    "The outer validation and the held-out test are not used to select complexity."
+  ]
+}

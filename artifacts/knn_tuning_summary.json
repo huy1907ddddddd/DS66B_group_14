@@ -1,0 +1,61 @@
+{
+  "selected_k": 21,
+  "weights": "distance",
+  "distance": "Euclidean on train-standardized 48 features",
+  "tested_k": [
+    1,
+    2,
+    3,
+    5,
+    7,
+    11,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    51,
+    101
+  ],
+  "folds": 3,
+  "gap_rows": 3,
+  "train_rows": 35680,
+  "validation_rows": 7859,
+  "test_evaluated": false,
+  "selected_cv_mae": 1499.7889119493786,
+  "comparison": [
+    {
+      "model": "Linear",
+      "k": null,
+      "validation_mae": 318.9880780701971
+    },
+    {
+      "model": "KNN initial",
+      "k": 15.0,
+      "validation_mae": 1698.7976521490602
+    },
+    {
+      "model": "KNN selected",
+      "k": 21.0,
+      "validation_mae": 1715.3365049582042
+    }
+  ],
+  "manual_neighbor_prediction_verified": true,
+  "limitations": [
+    "Best explored K under fixed distance weights and features; not a universal optimum.",
+    "Curve is a validation-error curve, not an unsupervised inertia elbow.",
+    "Two real examples do not replace aggregate validation metrics."
+  ]
+}

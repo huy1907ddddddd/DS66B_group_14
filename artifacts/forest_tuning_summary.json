@@ -1,0 +1,44 @@
+{
+  "selected": {
+    "max_depth": 14,
+    "min_samples_leaf": 5
+  },
+  "n_trees": 60,
+  "max_features": 0.8,
+  "search_candidates": 6,
+  "folds": 3,
+  "gap_rows": 3,
+  "train_rows": 35680,
+  "validation_rows": 7859,
+  "test_evaluated": false,
+  "selected_cv_mae": 1000.944430771632,
+  "tree_average_matches_forest_prediction": true,
+  "comparison": [
+    {
+      "model": "Linear",
+      "max_depth": null,
+      "min_samples_leaf": null,
+      "n_trees": 60,
+      "validation_mae": 318.9880780701971
+    },
+    {
+      "model": "Forest initial",
+      "max_depth": 14.0,
+      "min_samples_leaf": 5.0,
+      "n_trees": 60,
+      "validation_mae": 1223.0194365772568
+    },
+    {
+      "model": "Forest selected",
+      "max_depth": 14.0,
+      "min_samples_leaf": 5.0,
+      "n_trees": 60,
+      "validation_mae": 1223.0194365772568
+    }
+  ],
+  "limitations": [
+    "Best explored depth and leaf size under fixed tree count, max features and feature set.",
+    "Feature importance measures impurity reduction, not causal importance.",
+    "The outer validation and held-out test are not used to select structure."
+  ]
+}
