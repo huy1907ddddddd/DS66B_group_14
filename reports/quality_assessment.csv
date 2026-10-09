@@ -1,0 +1,25 @@
+scenario,zone,strategy,rows,available_rows,coverage,mae_available,fallback_rows
+Clean packets,zone_1,Without gate,3930,3930,1.0,418.9798710404121,0
+Clean packets,zone_1,Quality gate + fallback,3930,3930,1.0,419.492866870429,2
+Clean packets,zone_2,Without gate,3930,3930,1.0,292.8265004543295,0
+Clean packets,zone_2,Quality gate + fallback,3930,3930,1.0,293.16785804057037,2
+Clean packets,zone_3,Without gate,3930,3930,1.0,256.5159615551959,0
+Clean packets,zone_3,Quality gate + fallback,3930,3930,1.0,256.6767760651761,2
+Temperature missing,zone_1,Without gate,3930,0,0.0,,0
+Temperature missing,zone_1,Quality gate + fallback,3930,3930,1.0,1069.957588860051,3930
+Temperature missing,zone_2,Without gate,3930,0,0.0,,0
+Temperature missing,zone_2,Quality gate + fallback,3930,3930,1.0,761.3770326692112,3930
+Temperature missing,zone_3,Without gate,3930,0,0.0,,0
+Temperature missing,zone_3,Quality gate + fallback,3930,3930,1.0,531.22697783486,3930
+Zone 1 current multiplied by 10,zone_1,Without gate,3930,3930,1.0,278785.1510121001,0
+Zone 1 current multiplied by 10,zone_1,Quality gate + fallback,3930,3930,1.0,1394.0477768829517,3930
+Zone 1 current multiplied by 10,zone_2,Without gate,3930,3930,1.0,14727.906787091226,0
+Zone 1 current multiplied by 10,zone_2,Quality gate + fallback,3930,3930,1.0,761.3770326692112,3930
+Zone 1 current multiplied by 10,zone_3,Without gate,3930,3930,1.0,3470.080814681949,0
+Zone 1 current multiplied by 10,zone_3,Quality gate + fallback,3930,3930,1.0,531.22697783486,3930
+No current or recent backup,zone_1,Without gate,3930,0,0.0,,0
+No current or recent backup,zone_1,Quality gate + fallback,3930,0,0.0,,0
+No current or recent backup,zone_2,Without gate,3930,0,0.0,,0
+No current or recent backup,zone_2,Quality gate + fallback,3930,0,0.0,,0
+No current or recent backup,zone_3,Without gate,3930,0,0.0,,0
+No current or recent backup,zone_3,Quality gate + fallback,3930,0,0.0,,0

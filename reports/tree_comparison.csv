@@ -1,0 +1,4 @@
+model,max_depth,min_samples_leaf,validation_mae
+Linear,,,318.9880780701971
+Tree initial,12.0,20.0,1543.1489225723333
+Tree selected,16.0,20.0,1542.9558449387816

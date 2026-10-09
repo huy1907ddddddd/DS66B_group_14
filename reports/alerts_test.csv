@@ -1,0 +1,10 @@
+split,zone,strategy,classifier,precision,recall,f1,false_positive_rate,miss_rate,tp,fp,fn,tn,positive_events,negative_events
+test,zone_1,Direct classifier (validation 5% FPR budget),Perceptron,0.0410958904109589,1.0,0.07894736842105263,0.026748184944593044,0.0,9,210,0,7641,9,7851
+test,zone_1,Forecast score (validation 5% FPR budget),Perceptron,0.025280898876404494,1.0,0.049315068493150684,0.044198191313208506,0.0,9,347,0,7504,9,7851
+test,zone_1,Forecast above training high-demand threshold,Perceptron,0.7142857142857143,0.5555555555555556,0.625,0.0002547446185199338,0.4444444444444444,5,2,4,7849,9,7851
+test,zone_2,Direct classifier (validation 5% FPR budget),Linear SVM,0.8577857785778578,0.996340825927862,0.9218863361547763,0.05313603497561796,0.0036591740721380033,1906,316,7,5631,1913,5947
+test,zone_2,Forecast score (validation 5% FPR budget),Linear SVM,0.8205679862306369,0.9968635650810246,0.9001652112343639,0.07011938792668572,0.0031364349189754314,1907,417,6,5530,1913,5947
+test,zone_2,Forecast above training high-demand threshold,Linear SVM,0.984341252699784,0.9529534762153685,0.9683930942895086,0.004876408273078863,0.04704652378463147,1823,29,90,5918,1913,5947
+test,zone_3,Direct classifier (validation 5% FPR budget),Always normal,0.0,,,0.0,,0,0,0,7860,0,7860
+test,zone_3,Forecast score (validation 5% FPR budget),Always normal,0.0,,,0.01743002544529262,,0,137,0,7723,0,7860
+test,zone_3,Forecast above training high-demand threshold,Always normal,0.0,,,0.0,,0,0,0,7860,0,7860

@@ -1,0 +1,114 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{booktabs,tabularx,array,amsmath,xcolor,hyperref}
+\hypersetup{colorlinks=true,urlcolor=blue,linkcolor=blue}
+\setlength{\parskip}{5pt}
+\setlength{\parindent}{0pt}
+\title{Tetouan GridWatch\\\large Week 10 Progress Report: Demand Forecasting and High-Demand Alerts}
+\author{Group identifier and member names pending}
+\date{8 October 2026}
+\begin{document}
+\maketitle
+\begin{abstract}
+This milestone establishes a reproducible thirty-minute forecasting pipeline for three Tetouan distribution zones. It applies classroom methods through chapter 10 and evaluates direct high-demand classifiers separately from numeric forecasts. Linear regression achieves average test MAE 357.31 source units, compared with 776.60 for persistence, under one provisional chronological split. Alert quality varies substantially by zone. Future regime adaptation and anomaly fallback remain research hypotheses, with no fabricated later-chapter results.
+\end{abstract}
+
+\section{Problem definition and progress}
+At forecast origin $t$, predict each zone's observed demand at $t+30$ minutes using information available by $t$. A second task predicts whether the future measurement exceeds a zone-specific training threshold. The public source contains no physical capacity, outage or real sensor-fault labels. We therefore use the term high demand and retain source units rather than asserting kWh or overload.
+
+Completed: source audit, descriptive analysis, temporal features, classroom benchmarks, validation model selection, held-out evaluation, component ablations, four contract tests, an executed notebook, and a historical replay dashboard. The final fifteen-week project is unfinished.
+
+\section{Related work and proposed contribution}
+The UCI repository provides the Tetouan dataset and its bibliographic context. Alsalem (2025) study clustering and machine-learning prediction on Tetouan. Consequently, adding clustering alone cannot establish originality. Published scores cannot be directly compared without matching prediction horizons, features and splits. This initial related-work review must be expanded before the final submission.
+
+We propose two experimentally testable directions: (1) direct alerts with past-only regime adaptation, and (2) a data-quality gate with a documented fallback. H1 asks whether direct classification reduces misses at comparable false alarms. H2 asks whether regime specialists reduce peak errors. H3 asks whether a quality gate improves performance under explicitly synthetic input faults while controlling false alarms on clean inputs. These hypotheses are not demonstrated by the current implementation.
+
+\section{Data and classroom methods}
+The downloaded CSV contains 52,416 rows and nine columns: a timestamp, five weather variables and three zone measurements. Observations span 1 January through 30 December 2017 at ten-minute intervals. Missing cells, duplicate timestamps and irregular intervals are all zero within this observed range. UCI lists 52,417 instances; the CSV count discrepancy is documented without inventing a row. Original timestamps have no offset, so their source clock is preserved.
+
+Chapters 1--5 support problem definition, Python, datasets, descriptive statistics and the evaluation process. Chapter 6 supplies linear, Ridge and Lasso regression, logistic regression and perceptron classification. Chapters 7--9 supply KNN, Gaussian Naive Bayes, trees and random forests. Chapter 10 supplies classification SVM. We do not claim that the classroom material already taught support-vector regression.
+
+\section{Proposed method and evaluation protocol}
+The 48 inputs include available weather, current demand, lagged demand through seven days, trailing means and deviations, previous-day measurements at the future target slot, and known calendar encodings. Future observed weather is excluded. Training-only scalers are inside pipelines. Initial history requirements remove 1,008 observations.
+
+The original series' 70\% and 85\% positions establish boundaries. Forecast target timestamps may not cross development boundaries. Actual sample counts follow feature availability and boundary purging:
+\begin{center}
+\begin{tabular}{lrrl}\toprule
+Split & Samples & Purpose & First forecast origin\\\midrule
+Training & 35,680 & Fit models & 8 Jan 2017 00:00\\
+Validation & 7,859 & Select models/thresholds & 12 Sep 2017 19:10\\
+Test & 7,860 & Frozen evaluation & 6 Nov 2017 09:30\\\bottomrule
+\end{tabular}
+\end{center}
+The split is provisional until the groups sharing the dataset agree. Test replay allows measurements already observed at each new origin. Training targets end before validation starts and validation targets end before test starts.
+
+Forecast candidates include persistence, the previous day's same target slot, linear regression, Ridge, Lasso, KNN, decision tree and random forest. The lowest average validation MAE selects the forecaster. Configurations are bounded, with fixed random seed 42; this is not exhaustive hyperparameter optimization.
+
+Each alert label uses the zone's training 90th percentile. Classifiers include an always-normal baseline and the chapter 6--10 classification methods above. A cutoff strictly above the validation negative-score 95th percentile handles ties conservatively and targets at most 5\% validation false positives. Classifier selection prioritizes validation recall, then precision, then fit time. A zone with no positive validation examples cannot rank sensitivity and retains an explicitly unvalidated always-normal placeholder. All model choices and cutoffs are fixed before test evaluation.
+
+\section{Experimental results}
+\subsection{Forecasting}
+Linear regression has the lowest average validation MAE, 318.99. Ridge and Lasso achieve 351.45 and 338.73, respectively. The bounded KNN, tree and forest candidates perform worse. On the held-out period:
+\begin{center}
+\begin{tabular}{lrrr}\toprule
+Model & Average MAE & Average RMSE & Average $R^2$\\\midrule
+Linear regression & 357.31 & 536.72 & 0.9867\\
+Persistence & 776.60 & 1,156.19 & 0.9451\\
+Previous day & 951.92 & 1,520.00 & 0.8949\\\bottomrule
+\end{tabular}
+\end{center}
+Linear MAE is 54.0\% lower than persistence for this test period. This percentage is error reduction, not percent forecast accuracy. Per-zone linear MAE is 443.89, 343.16 and 284.89. Peak MAE uses the fixed research threshold and is unavailable for a zone with zero positive test samples. This one-year evaluation does not establish performance across future years or all seasons.
+
+\subsection{Alerts and failure analysis}
+The following two strategies target the same 5\% validation false-positive budget. Their test rates need not match. Counts refer to ten-minute positive samples, not independent grid incidents.
+\begin{center}\small
+\begin{tabular}{llrrrr}\toprule
+Zone & Strategy & Precision & Recall & Test FPR & Misses\\\midrule
+1 & Direct perceptron & 4.11\% & 100\% & 2.67\% & 0/9\\
+1 & Forecast score & 2.53\% & 100\% & 4.42\% & 0/9\\
+2 & Direct linear SVM & 85.78\% & 99.63\% & 5.31\% & 7/1,913\\
+2 & Forecast score & 82.06\% & 99.69\% & 7.01\% & 6/1,913\\
+3 & Always-normal placeholder & -- & -- & 0\% & --\\\bottomrule
+\end{tabular}\end{center}
+Zone 1 has only nine positive test samples and its direct classifier produces 210 false alarms; perfect observed recall therefore does not imply a useful or robust alert. Zone 2's direct classifier produces 316 false alarms versus 417 for forecast scores, but misses seven samples rather than six. This does not establish H1 at equal test false-alarm rates. Zone 3 has no positive validation or test samples at its training threshold, so recall is not estimable and its alert is not validated.
+
+A separate numeric forecast-above-training-threshold policy has zone 2 recall 95.30\% and FPR 0.49\%. It represents a different operating tradeoff and should not be portrayed as a matched-budget comparison. Future rolling validation should investigate seasonal changes and event scarcity.
+
+\subsection{Ablations and computation}
+\begin{center}
+\begin{tabular}{lr}\toprule
+Linear configuration, validation & Average MAE\\\midrule
+Full selected model & 318.99\\
+Without weather & 318.88\\
+Without all demand history & 4,881.07\\\bottomrule
+\end{tabular}\end{center}
+Demand history is essential in this setup. The negligible improvement without weather does not support a meaningful weather benefit. Ablations use identical samples on validation; they do not retrospectively replace the already-frozen test model. Source output records measured fit and batch prediction times. These are machine-specific batch measurements, not production single-request latency guarantees. The dashboard reads frozen replay results for smooth interaction.
+
+\section{Remaining chapters and planned experiments}
+\begin{center}\small
+\begin{tabularx}{\linewidth}{lXl}\toprule
+Chapter & Extension and evidence required & Status\\\midrule
+11 & Small MLP/LSTM against the same baselines & Planned\\
+12 & Past-only regime clustering, global versus adaptive comparison & Planned\\
+13 & Confirm the topic after receiving missing course material & Pending\\
+14 & Feature selection/PCA, error and runtime ablations & Planned\\
+15 & Quality gate and fallback, clean inputs and synthetic faults & Planned\\\bottomrule
+\end{tabularx}\end{center}
+The final evaluation should add a sixty-minute horizon and agreed rolling chronological validation. Additional hypotheses must use documented development data and suitable comparators, without relabeling synthetic faults as real sensor failures. These sections contain no later-chapter results.
+
+\section{Conclusion and contributions}
+The week-10 milestone has a working forecasting and alert evaluation pipeline. A simple linear model materially improves on persistence in the held-out period. Alert evidence reveals seasonal event scarcity and different false-alarm tradeoffs, motivating later research rather than proving an original contribution today.
+
+Group identifier and member contributions remain pending. Before submission, fill the following table with verified work, coordinate the split and GitHub sharing, expand related work, and review any AI-assisted implementation according to course policy.
+\begin{center}
+\begin{tabularx}{\linewidth}{lXX}\toprule
+Member & Verified contribution & Evidence\\\midrule
+To be confirmed & To be completed by the group & Actual commits/tasks\\\bottomrule
+\end{tabularx}\end{center}
+
+\begin{thebibliography}{9}
+\bibitem{uci} UCI Machine Learning Repository. \emph{Power Consumption of Tetouan City}. \url{https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city}.
+\bibitem{alsalem} Alsalem (2025). A hybrid time series forecasting approach integrating fuzzy clustering and machine learning for enhanced power consumption prediction. \emph{Scientific Reports}. \url{https://www.nature.com/articles/s41598-025-91123-8}. Volume 15, article 6447. DOI: 10.1038/s41598-025-91123-8.
+\end{thebibliography}
+\end{document}

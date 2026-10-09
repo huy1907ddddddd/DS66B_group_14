@@ -1,0 +1,4 @@
+model,k,validation_mae
+Linear,,318.9880780701971
+KNN initial,15.0,1698.7976521490602
+KNN selected,21.0,1715.3365049582042

@@ -1,0 +1,8 @@
+node,feature,input_value,threshold,rule,next_direction
+0,zone_3_daily_reference,21798.56997,21817.005859375,<= threshold,left
+1,zone_1,47322.47788,28423.0546875,> threshold,right
+803,zone_1,47322.47788,33376.91796875,> threshold,right
+1283,zone_3,21869.17263,18570.6376953125,> threshold,right
+1597,zone_1_daily_reference,46704.42478,36413.58984375,> threshold,right
+1715,zone_1,47322.47788,41864.494140625,> threshold,right
+1755,zone_1_daily_reference,46704.42478,42852.744140625,> threshold,right

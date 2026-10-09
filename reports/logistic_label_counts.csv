@@ -1,0 +1,4 @@
+zone,high_demand_threshold,train_rows,train_high,train_normal,validation_rows,validation_high,validation_normal
+zone_1,43101.95745,35680,3569,32111,7859,796,7063
+zone_2,27262.02532,35680,3569,32111,7859,875,6984
+zone_3,28402.3431,35680,3570,32110,7859,0,7859

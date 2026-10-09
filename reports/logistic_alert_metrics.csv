@@ -1,0 +1,16 @@
+zone,strategy,decision_threshold,status,precision,recall,f1,false_positive_rate,miss_rate,tp,fp,fn,tn,positive_events,negative_events
+zone_1,Always normal,,development calibration,0.0,0.0,0.0,0.0,1.0,0,0,796,7063,796,7063
+zone_1,Logistic default 0.5,0.5,development calibration,0.8530042918454935,0.9987437185929648,0.9201388888888888,0.01939685685969135,0.001256281407035176,795,137,1,6926,796,7063
+zone_1,Logistic calibrated 5%,0.01783825439535677,development calibration,0.6927763272410792,1.0,0.8185089974293059,0.04997876256548209,0.0,796,353,0,6710,796,7063
+zone_1,Linear above demand threshold,43101.95745,development calibration,0.98046875,0.9459798994974874,0.9629156010230179,0.002123743451791024,0.05402010050251256,753,15,43,7048,796,7063
+zone_1,Linear score calibrated 5%,40090.28496879397,development calibration,0.6927763272410792,1.0,0.8185089974293059,0.04997876256548209,0.0,796,353,0,6710,796,7063
+zone_2,Always normal,,development calibration,0.0,0.0,0.0,0.0,1.0,0,0,875,6984,875,6984
+zone_2,Logistic default 0.5,0.5,development calibration,0.8319006685768864,0.9954285714285714,0.9063475546305931,0.025200458190148912,0.004571428571428572,871,176,4,6808,875,6984
+zone_2,Logistic calibrated 5%,0.18406749670243733,development calibration,0.7148692810457516,1.0,0.8337303477846594,0.049971363115693015,0.0,875,349,0,6635,875,6984
+zone_2,Linear above demand threshold,27262.02532,development calibration,0.9639953542392566,0.9485714285714286,0.956221198156682,0.004438717067583047,0.05142857142857143,830,31,45,6953,875,6984
+zone_2,Linear score calibrated 5%,26081.773747305324,development calibration,0.7146361406377759,0.9988571428571429,0.8331744518589133,0.049971363115693015,0.001142857142857143,874,349,1,6635,875,6984
+zone_3,Always normal,,no positive validation events; sensitivity unavailable,0.0,,,0.0,,0,0,0,7859,0,7859
+zone_3,Logistic default 0.5,0.5,no positive validation events; sensitivity unavailable,0.0,,,0.0,,0,0,0,7859,0,7859
+zone_3,Logistic calibrated 5%,1.0074400867345011e-10,no positive validation events; sensitivity unavailable,0.0,,,0.049879119480849984,,0,392,0,7467,0,7859
+zone_3,Linear above demand threshold,28402.3431,no positive validation events; sensitivity unavailable,0.0,,,0.0,,0,0,0,7859,0,7859
+zone_3,Linear score calibrated 5%,20011.8412992889,no positive validation events; sensitivity unavailable,0.0,,,0.049879119480849984,,0,392,0,7467,0,7859
