@@ -1,1 +1,1 @@
-"""Reviewed data preparation for Tetouan GridWatch."""
+"""Tetouan GridWatch: reproducible forecasting and peak-alert experiments."""
