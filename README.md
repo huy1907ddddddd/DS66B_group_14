@@ -4,7 +4,7 @@
 
 [Mở Colab](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Xem notebook](notebooks/GridWatch_Colab.ipynb)
 
-**Quy trình:** đọc CSV → tách test ngay → chỉ làm trên train và validation. Test được giữ riêng; không EDA, tạo đặc trưng, chọn tham số hay chấm điểm trên test.
+**Quy trình:** đọc CSV → tách test ngay → phân tích và chọn cách làm bằng train/validation → chấm test ở phần cuối. Chuẩn hóa và tìm tham số chỉ học từ train; không dùng điểm test để đổi mô hình.
 
 | Phần | Đã làm |
 |---|---|
@@ -12,6 +12,7 @@
 | Feature Engineering | Tạo 48 đầu vào từ số đo hiện tại, quá khứ và thời gian |
 | Model | So sánh 6 mô hình và 2 cách đoán đơn giản bằng MAE |
 | Tối ưu | Tìm Alpha của Ridge/Lasso và K của KNN bằng 3 lượt chia thời gian trong train |
+| Đánh giá cuối | So MAE, RMSE và R² trên train/test cho 6 mô hình ban đầu và các bản tối ưu |
 
 `Runtime → Run all`: chạy từ đầu. `RUN_TREE_SEARCH = True`: tìm thêm tham số cây/rừng; chạy lâu hơn. Mọi kết quả được tính trong notebook, không đọc bảng điểm cũ.
 
@@ -19,7 +20,7 @@ Hai ý tưởng ứng dụng: cảnh báo điện cao và dùng số đo dự ph
 
 **Còn làm:** chốt cách chia chung, đối chiếu nghiên cứu, hoàn thiện báo cáo/slide và học tiếp chương 11–15.
 
-30 phút là lựa chọn của nhóm; dữ liệu cách nhau 10 phút. Giữ đơn vị gốc. Test từng được xem trong bản cũ; bản này không dùng lại test, và cần ghi rõ lịch sử đó khi chốt đánh giá cuối.
+30 phút là lựa chọn của nhóm; dữ liệu cách nhau 10 phút. Giữ đơn vị gốc. Test từng được xem trong bản cũ; cần ghi rõ lịch sử đó khi chốt đánh giá cuối. Phần 11 đánh giá test cuốn chiếu: dùng số đo hiện tại/quá khứ để dự đoán sau 30 phút, không dự đoán cả giai đoạn từ một mốc. Bảng so sánh giữ cả bản ban đầu và bản tối ưu, không chọn lại tham số theo điểm test.
 
 Các thư mục code, app và báo cáo cũ được giữ để tra cứu; không phải phần phụ thuộc của notebook này.
 
