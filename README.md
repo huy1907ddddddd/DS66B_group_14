@@ -12,7 +12,7 @@
 | Feature Engineering | Tạo 48 đầu vào từ số đo hiện tại, quá khứ và thời gian |
 | Model | So sánh 6 mô hình và 2 cách đoán đơn giản bằng MAE |
 | Tối ưu | Tìm Alpha của Ridge/Lasso và K của KNN bằng 3 lượt chia thời gian trong train |
-| Đánh giá cuối | So MAE, RMSE và R² trên train/test cho 6 mô hình ban đầu và các bản tối ưu |
+| Đánh giá cuối | So MAE, RMSE, MAPE (%) và R² trên train/test cho 6 mô hình ban đầu và các bản tối ưu |
 
 `Runtime → Run all`: chạy từ đầu. `RUN_TREE_SEARCH = True`: tìm thêm tham số cây/rừng; chạy lâu hơn. Mọi kết quả được tính trong notebook, không đọc bảng điểm cũ.
 
