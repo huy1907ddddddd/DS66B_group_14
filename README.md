@@ -1,38 +1,26 @@
-# Tetouan GridWatch
+# Dự đoán điện sau 30 phút
 
-**Statistical Learning — DS66B, Group 14**
+**DS66B — Nhóm 14:** Trần Quang Huy, Bùi Ngọc Thuấn, Nguyễn Hoàng Thành.
 
-Trần Quang Huy · Bùi Ngọc Thuấn · Nguyễn Hoàng Thành
+[Mở Colab](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Xem notebook](notebooks/GridWatch_Colab.ipynb)
 
-## Start with the notebook
+**Quy trình:** đọc CSV → tách test ngay → chỉ làm trên train và validation. Test được giữ riêng; không EDA, tạo đặc trưng, chọn tham số hay chấm điểm trên test.
 
-[Open in Google Colab](https://colab.research.google.com/github/huy1907ddddddd/DS66B_group_14/blob/main/notebooks/GridWatch_Colab.ipynb)
+| Phần | Đã làm |
+|---|---|
+| EDA | Kiểm tra dữ liệu; xem thống kê và điện theo giờ trên train |
+| Feature Engineering | Tạo 48 đầu vào từ số đo hiện tại, quá khứ và thời gian |
+| Model | So sánh 6 mô hình và 2 cách đoán đơn giản bằng MAE |
+| Tối ưu | Tìm Alpha của Ridge/Lasso và K của KNN bằng 3 lượt chia thời gian trong train |
 
-Open `notebooks/GridWatch_Colab.ipynb` and choose **Runtime → Run all**. The notebook reads one public CSV and uses ordinary pandas and scikit-learn code. It needs no Windows paths, Drive mount, project-module imports or saved-result files. Each result is calculated by the visible cells.
+`Runtime → Run all`: chạy từ đầu. `RUN_TREE_SEARCH = True`: tìm thêm tham số cây/rừng; chạy lâu hơn. Mọi kết quả được tính trong notebook, không đọc bảng điểm cũ.
 
-## What it does
+Hai ý tưởng ứng dụng: cảnh báo điện cao và dùng số đo dự phòng khi đầu vào sai. Hiện mới là thử nghiệm, chưa chứng minh tiền tiết kiệm hay khả năng vận hành thực tế.
 
-1. Read and check the Tetouan data; inspect its training-period statistics.
-2. Create 48 current, historical and calendar inputs; predict the three zones 30 minutes ahead.
-3. Split by time, keeping future answers before the next period's boundary.
-4. Compare two simple baselines and six regression models using validation MAE.
-5. Show one real prediction and search small Alpha/K grids using three chronological folds inside train.
-6. Check feature groups, demonstrate a Zone 1 high-demand alert, compare hypothetical alert penalties and show a checked past-reading fallback for a synthetic bad input.
+**Còn làm:** chốt cách chia chung, đối chiếu nghiên cứu, hoàn thiện báo cáo/slide và học tiếp chương 11–15.
 
-The normal run includes Alpha/K selection. Set `RUN_TREE_SEARCH = True` to also search tree/forest structure. Set `RUN_TEST_REPLAY = True` only to replay the previously inspected test period. These switches are visible in the relevant cells.
+30 phút là lựa chọn của nhóm; dữ liệu cách nhau 10 phút. Giữ đơn vị gốc. Test từng được xem trong bản cũ; bản này không dùng lại test, và cần ghi rõ lịch sử đó khi chốt đánh giá cuối.
 
-## Scope and interpretation
+Các thư mục code, app và báo cáo cũ được giữ để tra cứu; không phải phần phụ thuộc của notebook này.
 
-- The source samples every 10 minutes; the project's chosen forecast horizon is 30 minutes. A future demand reading is not total energy consumed over 30 minutes. Measurement units are retained as source units.
-- The chronological split remains provisional until agreed with peer groups. The historical test has already been inspected and is not a new untouched final test.
-- The small grids select the best tried settings on their folds, not a universal optimum. The initial-model comparison and tuned-model comparison are separate tables.
-- High demand is defined by the training 90th percentile, not physical grid capacity. Error penalties are assumed points, not proven savings. The faulty packet is a classroom simulation.
-- Chapters 11–15 and the final English report/slides remain unfinished. Record each member's actual contribution.
-
-The other `src/`, `app/`, `reports/` and older notebook files retain the earlier, larger implementation and its historical outputs. They are not dependencies of this simplified notebook, and their guides/scores do not automatically describe the new small-grid searches.
-
-## Sources
-
-- [UCI Tetouan dataset](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city), Salam & El Hibaoui, DOI 10.24432/C5B034, CC BY 4.0.
-- [Assignment topics and requirements](https://docs.google.com/spreadsheets/d/17AhxqqU-uAUvH9RTIqbgO1w13_obfjTln45ukoH7SmM/edit).
-- [Alsalem (2025), Scientific Reports](https://www.nature.com/articles/s41598-025-91123-8), related Tetouan forecasting work. Scores require the same horizon, data split and metrics before comparison.
+**Nguồn:** [UCI](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city) (CC BY 4.0) · [Yêu cầu môn học](https://docs.google.com/spreadsheets/d/17AhxqqU-uAUvH9RTIqbgO1w13_obfjTln45ukoH7SmM/edit) · [Alsalem 2025](https://www.nature.com/articles/s41598-025-91123-8). So sánh điểm nghiên cứu khác phải cùng cách chia và thời gian dự đoán.
