@@ -1,0 +1,8 @@
+Model,Tham số chọn,CV MAE,Validation MAE
+Ridge,{'ridge__alpha': 0.001},185.91970627292997,163.70043067335104
+Lasso,{'lasso__alpha': 0.1},195.98277660023032,183.32974563414163
+KNN,{'kneighborsregressor__n_neighbors': 15},1419.2993052958889,1837.1899923622448
+Decision Tree,"{'max_depth': None, 'min_samples_leaf': 5}",1003.3244853515747,1013.981610589873
+Random Forest,"{'max_depth': 18, 'min_samples_leaf': 2}",769.884644123943,910.66172763463
+PCA + Ridge,"{'pca__n_components': 0.999, 'ridge__alpha': 0.1}",361.2396517242064,290.6022481980934
+MLP,"{'regressor__mlpregressor__alpha': 0.1, 'regressor__mlpregressor__hidden_layer_sizes': (32, 16)}",341.98977173672296,413.6241689224353

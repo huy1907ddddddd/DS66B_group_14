@@ -1,27 +1,26 @@
-# Dự đoán điện sau 30 phút
+# Dự đoán điện bước kế tiếp — 10 phút
 
-**DS66B — Nhóm 14:** Trần Quang Huy, Bùi Ngọc Thuấn, Nguyễn Hoàng Thành.
+DS66B, nhóm 14: Trần Quang Huy, Bùi Ngọc Thuấn, Nguyễn Hoàng Thành.
 
-[Mở Colab](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Xem notebook](notebooks/GridWatch_Colab.ipynb)
+[Mở Colab](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Notebook](notebooks/GridWatch_Colab.ipynb) · [Kết quả chi tiết](reports/Next_Step_Results_vi.md)
 
-**Quy trình:** đọc CSV → tách test ngay → phân tích và chọn cách làm bằng train/validation → chấm test ở phần cuối. Chuẩn hóa và tìm tham số chỉ học từ train; không dùng điểm test để đổi mô hình.
+Đọc CSV → tách test ngay → xử lý và chọn mô hình bằng train/validation → chấm test ở cuối. Dự đoán dòng kế tiếp, horizon=1, tương ứng 10 phút.
 
-| Phần | Đã làm |
-|---|---|
-| EDA | Kiểm tra dữ liệu; xem thống kê và điện theo giờ trên train |
-| Feature Engineering | Tạo 48 đầu vào từ số đo hiện tại, quá khứ và thời gian |
-| Model | So sánh 6 mô hình và 2 cách đoán đơn giản bằng MAE |
-| Tối ưu | Tìm Alpha của Ridge/Lasso và K của KNN bằng 3 lượt chia thời gian trong train |
-| Đánh giá cuối | So MAE, RMSE, MAPE (%) và R² trên train/test cho 6 mô hình ban đầu và các bản tối ưu |
+- So đầu vào ngắn hạn, thêm tuần, thêm tháng lịch, thêm cả hai trên cùng thời điểm.
+- 8 mô hình: Linear, Ridge, Lasso, KNN, cây, rừng, PCA + Ridge, MLP; thêm 4 baseline để đối chiếu.
+- Giữ tìm Alpha, K, độ sâu/số mẫu ở lá; tìm thêm tham số PCA và MLP bằng CV thời gian 3 lượt, gap=1.
+- Bảng MAE/RMSE/MAPE/R² trên train/test, bảng MAE theo tuần/tháng, biểu đồ hai đường thực tế/dự đoán.
+- Đã bỏ cảnh báo điện cao và xử lý đầu vào lỗi khỏi notebook chính.
 
-`Runtime → Run all`: chạy từ đầu. `RUN_TREE_SEARCH = True`: tìm thêm tham số cây/rừng; chạy lâu hơn. Mọi kết quả được tính trong notebook, không đọc bảng điểm cũ.
+Kết quả chọn bằng validation: nhóm + Tuần, 49 biến, mô hình Linear.
+MAE validation 163.7002; MAE test 173.5309.
+Các cấu hình thử và bảng đầy đủ nằm trong reports/. Mô hình đã chốt trước khi mở test.
 
-Hai ý tưởng ứng dụng: cảnh báo điện cao và dùng số đo dự phòng khi đầu vào sai. Hiện mới là thử nghiệm, chưa chứng minh tiền tiết kiệm hay khả năng vận hành thực tế.
+Chạy Runtime → Run all trên Colab. Một notebook chứa toàn bộ quy trình; sklearn/numpy/pandas/matplotlib đã có trên Colab thông thường.
+Lần chạy kiểm tra trên máy mất 447.8 giây; Colab có thể khác. Rừng và mạng nơ-ron là các phần tốn thời gian hơn.
 
-**Còn làm:** chốt cách chia chung, đối chiếu nghiên cứu, hoàn thiện báo cáo/slide và học tiếp chương 11–15.
+Test cuốn chiếu: dùng số đo hiện tại/quá khứ đã có, không fit lại trên test. Dữ liệu chỉ có năm 2017; test từng được xem trong bản 30 phút trước đây.
+Mã, app và báo cáo tuần 10 cũ là tài liệu lịch sử; notebook và báo cáo liên kết ở đầu trang là bản hiện hành.
+Bản giải thích tiếng Việt phục vụ nhóm học hiểu; báo cáo/slide nộp theo yêu cầu ngôn ngữ môn học.
 
-30 phút là lựa chọn của nhóm; dữ liệu cách nhau 10 phút. Giữ đơn vị gốc. Test từng được xem trong bản cũ; cần ghi rõ lịch sử đó khi chốt đánh giá cuối. Phần 11 đánh giá test cuốn chiếu: dùng số đo hiện tại/quá khứ để dự đoán sau 30 phút, không dự đoán cả giai đoạn từ một mốc. Bảng so sánh giữ cả bản ban đầu và bản tối ưu, không chọn lại tham số theo điểm test.
-
-Các thư mục code, app và báo cáo cũ được giữ để tra cứu; không phải phần phụ thuộc của notebook này.
-
-**Nguồn:** [UCI](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city) (CC BY 4.0) · [Yêu cầu môn học](https://docs.google.com/spreadsheets/d/17AhxqqU-uAUvH9RTIqbgO1w13_obfjTln45ukoH7SmM/edit) · [Alsalem 2025](https://www.nature.com/articles/s41598-025-91123-8). So sánh điểm nghiên cứu khác phải cùng cách chia và thời gian dự đoán.
+Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city) (CC BY 4.0); kiến thức lớp chương 11/13/14.

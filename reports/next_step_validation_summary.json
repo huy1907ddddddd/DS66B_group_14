@@ -1,0 +1,26 @@
+{
+  "horizon_steps": 1,
+  "forecast_minutes": 10,
+  "selected_feature_group": "+ Tuần",
+  "selected_features": 49,
+  "train_rows": 32227,
+  "validation_rows": 7861,
+  "test_rows": 7862,
+  "selected_model": "Linear",
+  "validation_mae": 163.7002081309757,
+  "test_metrics": {
+    "Train MAE": 174.87284439908908,
+    "Train RMSE": 280.6288828483691,
+    "Train MAPE (%)": 0.7538643031086294,
+    "Train R2": 0.998067992859801,
+    "Test MAE": 173.53089669485598,
+    "Test RMSE": 271.33654757827213,
+    "Test MAPE (%)": 0.8951077907636116,
+    "Test R2": 0.9966622253570177
+  },
+  "seconds": 447.84,
+  "warnings": [],
+  "all_checks_passed": true,
+  "environment": "Local Python 3.12; outputs are from actual execution, not a Colab cloud run.",
+  "test_cadence_checks_passed": true
+}
