@@ -17,10 +17,18 @@ MAE validation 163.7002; MAE test 173.5309.
 Các cấu hình thử và bảng đầy đủ nằm trong reports/. Mô hình đã chốt trước khi mở test.
 
 Chạy Runtime → Run all trên Colab. Một notebook chứa toàn bộ quy trình; sklearn/numpy/pandas/matplotlib đã có trên Colab thông thường.
-Lần chạy kiểm tra trên máy mất 447.8 giây; Colab có thể khác. Rừng và mạng nơ-ron là các phần tốn thời gian hơn.
+Lần chạy kiểm tra trên máy mất 751.8 giây; Colab có thể khác. Rừng và mạng nơ-ron là các phần tốn thời gian hơn.
 
-Test cuốn chiếu: dùng số đo hiện tại/quá khứ đã có, không fit lại trên test. Dữ liệu chỉ có năm 2017; test từng được xem trong bản 30 phút trước đây.
+Test cuốn chiếu: dùng số đo hiện tại/quá khứ đã có, không fit lại trên test. Dữ liệu chỉ có năm 2017; test đã được chấm trong các bản 30 phút và 10 phút trước; vòng thử mới chỉ dùng train/validation để quyết định.
 Mã, app và báo cáo tuần 10 cũ là tài liệu lịch sử; notebook và báo cáo liên kết ở đầu trang là bản hiện hành.
 Bản giải thích tiếng Việt phục vụ nhóm học hiểu; báo cáo/slide nộp theo yêu cầu ngôn ngữ môn học.
 
 Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city) (CC BY 4.0); kiến thức lớp chương 11/13/14.
+
+## Hai hướng tối ưu đã thử
+
+- RF/MLP học mức thay đổi rồi cộng lại điện hiện tại; giữ tham số để so riêng tác động đổi đáp án.
+- Thử tám cách giữ/bỏ nhóm biến; chưa có cách giảm biến tốt hơn đồng thời CV và validation.
+- Giữ Linear với 49 biến. Bảng cuối đối chiếu 21 cách, notebook có 21 ô code.
+
+[Xem kết quả hai hướng tối ưu](reports/Optimization_Results_vi.md).
