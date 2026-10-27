@@ -75,4 +75,6 @@ Report dùng cùng mạch nhưng bổ sung mô tả dữ liệu, công thức ng
 
 ## Tình trạng sau khi sắp xếp lại
 
-Hai notebook có 27 ô code và 42 hàng thử nghiệm. Mốc đầu chỉ tám số đo hiện tại; các bước thêm lịch sử, tuần/tháng, tìm tham số, delta, bỏ biến có bảng trước/sau. Dùng cùng 32,227/7,861/7,862 dòng train/validation/test. Slide nộp cuối chưa được tạo.
+Ý tưởng EDA bổ sung của sếp: zone 2 và 3 tăng rõ trong mùa hè, cần đối chiếu giai đoạn tháng 7–9 với thời tiết và các biến thời gian trên train. Biểu đồ còn có nhịp giảm về tháng 9 và train chỉ tới 12/09. Đây là giả thuyết cần kiểm tra, chưa phải nguyên nhân đã xác định hay phương án tối ưu đã có kết quả. Xem mục 5 trong Y_tuong_chinh_sua_20261027_vi.md. Có thể dùng để kể mạch quan sát → đặt câu hỏi → thử nghiệm trong slide/report.
+
+Hai notebook có 31 ô code sau khi tách bảng EDA và 42 hàng thử nghiệm. Mốc đầu chỉ tám số đo hiện tại; các bước thêm lịch sử, tuần/tháng, tìm tham số, delta, bỏ biến có bảng trước/sau. Dùng cùng 32,227/7,861/7,862 dòng train/validation/test. Slide nộp cuối chưa được tạo.

@@ -29,3 +29,18 @@ Mỗi thay đổi làm trên cả notebook chính và notebook giải thích t�
 ## 4. Xem dữ liệu trước và sau xử lý
 
 Đã tách hai ô ở cả hai notebook: ô 2.1 đọc/chia ngay rồi hiện hai dòng train với cột/ngày giờ gốc; ô 2.2 đổi tên/định dạng giờ rồi hiện lại hai dòng đó. Biểu đồ train ở ngay sau hai ô.
+
+## 5. Zone 2 và 3 biến động trong giai đoạn tháng 7–9
+
+Trạng thái: ghi nhận ý tưởng của sếp, chưa kiểm tra giả thuyết hoặc thay đổi mô hình.
+
+- Nhận xét từ biểu đồ train: zone 2 và 3 tăng rõ trong mùa hè, đáng chú ý từ tháng 7; cần xem cả nhịp giảm về tháng 9, không mô tả là tăng liên tục suốt tháng 7–9. Train chỉ có tới 12/09 nên tháng 9 chưa đầy đủ.
+- Câu hỏi: biến động này có đi cùng nhiệt độ, độ ẩm, gió, bức xạ hay giờ/thứ/tháng không? Có khác giữa các khu vực không?
+- Khi tới phần EDA mở rộng, chỉ phân tích train: vẽ mức điện và biến đầu vào theo thời gian trên các ô/trục riêng; xem biểu đồ phân tán và tương quan, kiểm tra thêm theo cùng khung giờ hoặc cùng tháng để tránh nhầm hai biến cùng có xu hướng thời gian là quan hệ trực tiếp.
+- Tương quan chỉ là dấu hiệu, chưa chứng minh nguyên nhân và chưa bảo đảm tăng chất lượng dự đoán. Không mặc định do điều hòa hay hoạt động kinh doanh khi dữ liệu chưa có thông tin đó.
+- Nếu có dấu hiệu hợp lý, thử đầu vào đơn giản như nhiệt độ kết hợp giờ trong ngày hoặc ảnh hưởng riêng theo khu vực. So với bản hiện tại trên cùng các mốc bằng train/CV/validation; giữ bước mới khi validation tốt hơn, test chỉ đối chiếu sau khi chốt.
+- Có thể đưa nhận xét này vào slide/report để nối câu chuyện: quan sát dữ liệu → đặt câu hỏi → kiểm tra → thử tối ưu → giữ hoặc bỏ theo kết quả. Chưa điền kết luận khi chưa chạy.
+
+## 6. Mỗi bảng EDA một ô code
+
+Đã tách ở cả hai bản: một ô kiểm tra dữ liệu, rồi bốn ô riêng cho thống kê chung, theo giờ, theo thứ và theo tháng. Giữ nguyên phép tính và các bảng đã chạy; không huấn luyện lại. Notebook hiện có 31 ô code.

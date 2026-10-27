@@ -19,9 +19,9 @@ Mỗi bước có bảng trước/sau gồm validation và test. Cấu hình ch�
 
 ## Kết quả đã chạy
 
-27 ô code; 42 hàng kết quả đối chiếu. Các bước cùng 32,227/7,861/7,862 dòng train/validation/test sau khi giữ chung mốc đủ lịch sử.
+31 ô code sau khi tách bảng EDA; 42 hàng kết quả đối chiếu. Các bước cùng 32,227/7,861/7,862 dòng train/validation/test sau khi giữ chung mốc đủ lịch sử.
 Chọn bằng validation: Linear; nhóm + Tuần, 49 đầu vào. MAE test 173.5309.
-Lần chạy trên máy mất 1295.0 giây; Colab có thể khác. Scaler/PCA chỉ fit trong train/CV. Giữ tìm Alpha, K và tham số cây/rừng/PCA/MLP.
+Lần chạy đầy đủ trước khi tách ô (cùng phép tính) trên máy mất 1295.0 giây; Colab có thể khác. Scaler/PCA chỉ fit trong train/CV. Giữ tìm Alpha, K và tham số cây/rừng/PCA/MLP.
 
 [Bảng từng bước](reports/optimization_progression.csv) · [Mọi thử nghiệm](reports/all_experiment_results.csv) · [Ghi chú slide/report](docs/Bao_cuc_notebook_slide_report_vi.md)
 

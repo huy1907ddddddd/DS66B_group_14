@@ -2,7 +2,7 @@
 
 DS66B, nhóm 14. Cập nhật 27/10/2026, từ lần chạy thật đã kiểm tra.
 
-Hai notebook có cùng phép tính/kết quả; bản giải thích thêm comment từng dòng. 27 ô code, 42 hàng kết quả đối chiếu; chạy trên máy mất 1295.0 giây. Colab có thể khác.
+Hai notebook có cùng phép tính/kết quả; bản giải thích thêm comment từng dòng. Lần chạy đầy đủ gồm 27 ô code (nay tách thành 31 ô, cùng phép tính), 42 hàng kết quả đối chiếu; chạy trên máy mất 1295.0 giây. Colab có thể khác.
 
 ## 1. Tổng quan
 
