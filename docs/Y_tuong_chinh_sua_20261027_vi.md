@@ -48,3 +48,7 @@ Trạng thái: ghi nhận ý tưởng của sếp, chưa kiểm tra giả thuy�
 ## 7. Biểu đồ theo giờ thay bảng
 
 Đã thay bảng theo giờ bằng ba đường cho ba khu vực trên cả hai notebook. Mỗi đường có 24 điểm, là trung bình các số đo cùng khung giờ trong train. Các giá trị khớp bảng cũ; chưa thay đổi mô hình.
+
+## 8. Biểu đồ theo thứ và tháng thay bảng
+
+Đã thay hai bảng bằng hai biểu đồ đường ở cả notebook chính và giải thích chạy trong VS Code. Mỗi khu vực một đường: bảy điểm T2–CN và chín điểm tháng 1–9. Giá trị khớp bảng cũ trên train. Đã ghi rõ tháng 9 chỉ đến 19:00 ngày 12/09, không coi là một tháng đầy đủ.
