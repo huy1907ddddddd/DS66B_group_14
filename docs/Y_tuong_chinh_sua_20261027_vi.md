@@ -43,4 +43,8 @@ Trạng thái: ghi nhận ý tưởng của sếp, chưa kiểm tra giả thuy�
 
 ## 6. Mỗi bảng EDA một ô code
 
-Đã tách ở cả hai bản: một ô kiểm tra dữ liệu, rồi bốn ô riêng cho thống kê chung, theo giờ, theo thứ và theo tháng. Giữ nguyên phép tính và các bảng đã chạy; không huấn luyện lại. Notebook hiện có 31 ô code.
+Đã tách ở cả hai bản: một ô kiểm tra dữ liệu, rồi các ô riêng cho thống kê chung, theo giờ, theo thứ và theo tháng; mục theo giờ đã đổi từ bảng sang biểu đồ đường. Giữ nguyên phép tính và các bảng đã chạy; không huấn luyện lại. Notebook hiện có 31 ô code.
+
+## 7. Biểu đồ theo giờ thay bảng
+
+Đã thay bảng theo giờ bằng ba đường cho ba khu vực trên cả hai notebook. Mỗi đường có 24 điểm, là trung bình các số đo cùng khung giờ trong train. Các giá trị khớp bảng cũ; chưa thay đổi mô hình.
