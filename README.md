@@ -1,34 +1,30 @@
-# Dự đoán điện bước kế tiếp — 10 phút
+# Dự đoán điện sau 10 phút
 
 DS66B, nhóm 14: Trần Quang Huy, Bùi Ngọc Thuấn, Nguyễn Hoàng Thành.
 
-[Mở Colab](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Notebook](notebooks/GridWatch_Colab.ipynb) · [Kết quả chi tiết](reports/Next_Step_Results_vi.md)
+[Colab chính](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Colab giải thích từng dòng](https://colab.research.google.com/drive/18pQmIPzSMiz7GdoDSPnbF6hFkfei8XvF) · [Kết quả hiện tại](reports/Next_Step_Results_vi.md)
 
-Đọc CSV → tách test ngay → xử lý và chọn mô hình bằng train/validation → chấm test ở cuối. Dự đoán dòng kế tiếp, horizon=1, tương ứng 10 phút.
+Một notebook chạy toàn bộ trên Colab: Runtime → Run all. Bản giải thích có cùng phép tính/kết quả, thêm comment tiếng Việt từng dòng.
 
-- So đầu vào ngắn hạn, thêm tuần, thêm tháng lịch, thêm cả hai trên cùng thời điểm.
-- 8 mô hình: Linear, Ridge, Lasso, KNN, cây, rừng, PCA + Ridge, MLP; thêm 4 baseline để đối chiếu.
-- Giữ tìm Alpha, K, độ sâu/số mẫu ở lá; tìm thêm tham số PCA và MLP bằng CV thời gian 3 lượt, gap=1.
-- Bảng MAE/RMSE/MAPE/R² trên train/test, bảng MAE theo tuần/tháng, biểu đồ hai đường thực tế/dự đoán.
-- Đã bỏ cảnh báo điện cao và xử lý đầu vào lỗi khỏi notebook chính.
+## Mạch bài
 
-Kết quả chọn bằng validation: nhóm + Tuần, 49 biến, mô hình Linear.
-MAE validation 163.7002; MAE test 173.5309.
-Các cấu hình thử và bảng đầy đủ nằm trong reports/. Mô hình đã chốt trước khi mở test.
+1. Đọc và chia ngay theo thời gian, xem dữ liệu thô rồi đổi tên/định dạng giờ; biểu đồ train.
+2. Persistence và tám mô hình với tám số đo hiện tại.
+3. Thêm quá khứ và giờ thành 40 biến; thử thêm tuần/tháng.
+4. Tìm tham số bằng CV thời gian, ba lượt, gap=1.
+5. Thử học mức tăng/giảm, thử bỏ nhóm đầu vào.
+6. Chốt bằng validation; bảng train/test, MAE từng khu vực/tuần/tháng, biểu đồ hai đường.
 
-Chạy Runtime → Run all trên Colab. Một notebook chứa toàn bộ quy trình; sklearn/numpy/pandas/matplotlib đã có trên Colab thông thường.
-Lần chạy kiểm tra trên máy mất 751.8 giây; Colab có thể khác. Rừng và mạng nơ-ron là các phần tốn thời gian hơn.
+Mỗi bước có bảng trước/sau gồm validation và test. Cấu hình chọn bằng train/CV/validation; test chỉ đối chiếu, không dùng chọn hướng thử tiếp. Test đã được chấm từ các bản trước, không phải kiểm chứng hoàn toàn mới.
 
-Test cuốn chiếu: dùng số đo hiện tại/quá khứ đã có, không fit lại trên test. Dữ liệu chỉ có năm 2017; test đã được chấm trong các bản 30 phút và 10 phút trước; vòng thử mới chỉ dùng train/validation để quyết định.
-Mã, app và báo cáo tuần 10 cũ là tài liệu lịch sử; notebook và báo cáo liên kết ở đầu trang là bản hiện hành.
-Bản giải thích tiếng Việt phục vụ nhóm học hiểu; báo cáo/slide nộp theo yêu cầu ngôn ngữ môn học.
+## Kết quả đã chạy
 
-Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city) (CC BY 4.0); kiến thức lớp chương 11/13/14.
+27 ô code; 42 hàng kết quả đối chiếu. Các bước cùng 32,227/7,861/7,862 dòng train/validation/test sau khi giữ chung mốc đủ lịch sử.
+Chọn bằng validation: Linear; nhóm + Tuần, 49 đầu vào. MAE test 173.5309.
+Lần chạy trên máy mất 1295.0 giây; Colab có thể khác. Scaler/PCA chỉ fit trong train/CV. Giữ tìm Alpha, K và tham số cây/rừng/PCA/MLP.
 
-## Hai hướng tối ưu đã thử
+[Bảng từng bước](reports/optimization_progression.csv) · [Mọi thử nghiệm](reports/all_experiment_results.csv) · [Ghi chú slide/report](docs/Bao_cuc_notebook_slide_report_vi.md)
 
-- RF/MLP học mức thay đổi rồi cộng lại điện hiện tại; giữ tham số để so riêng tác động đổi đáp án.
-- Thử tám cách giữ/bỏ nhóm biến; chưa có cách giảm biến tốt hơn đồng thời CV và validation.
-- Giữ Linear với 49 biến. Bảng cuối đối chiếu 21 cách, notebook có 21 ô code.
+Chưa thử cây riêng từng khu vực hoặc kiểm tra riêng tác động sin/cos. Chưa tạo slide/report nộp cuối theo template. Các app và báo cáo tuần 10 cũ là tài liệu lịch sử; notebook và báo cáo liên kết đầu trang là bản hiện hành.
 
-[Xem kết quả hai hướng tối ưu](reports/Optimization_Results_vi.md).
+Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city), năm 2017 (CC BY 4.0); kiến thức lớp chương 11/13/14. Mã và giải thích tiếng Việt phục vụ nhóm học hiểu.

@@ -1,120 +1,31 @@
 {
-  "horizon_steps": 1,
-  "forecast_minutes": 10,
-  "code_cells": 21,
-  "compared_models": 21,
-  "feature_ablation": [
-    {
-      "Phương án": "Giữ nguyên",
-      "Số biến": 49,
-      "CV MAE": 185.9190158304339,
-      "CV độ lệch chuẩn": 14.706168423421081,
-      "MAE": 163.7002081309757,
-      "RMSE": 248.16910170329322,
-      "MAPE (%)": 0.7951751902084692,
-      "R2": 0.9971596485214523
-    },
-    {
-      "Phương án": "Bỏ thời tiết",
-      "Số biến": 44,
-      "CV MAE": 186.1874813471242,
-      "CV độ lệch chuẩn": 15.37394783996805,
-      "MAE": 163.6212641591261,
-      "RMSE": 248.1589107876523,
-      "MAPE (%)": 0.7949533632060363,
-      "R2": 0.9971559913845596
-    },
-    {
-      "Phương án": "Bỏ độ lệch chuẩn",
-      "Số biến": 43,
-      "CV MAE": 184.44855269925225,
-      "CV độ lệch chuẩn": 12.160615446371155,
-      "MAE": 163.96019559945842,
-      "RMSE": 249.11292106239574,
-      "MAPE (%)": 0.7949542238106186,
-      "R2": 0.9971378670155184
-    },
-    {
-      "Phương án": "Bỏ trung bình",
-      "Số biến": 43,
-      "CV MAE": 185.85555588659466,
-      "CV độ lệch chuẩn": 14.726730032149145,
-      "MAE": 163.80471617273773,
-      "RMSE": 248.26142654791406,
-      "MAPE (%)": 0.7955263309100841,
-      "R2": 0.9971589860067552
-    },
-    {
-      "Phương án": "Bỏ cả nhóm rolling",
-      "Số biến": 37,
-      "CV MAE": 184.4377568172159,
-      "CV độ lệch chuẩn": 12.199243475672512,
-      "MAE": 164.10156604982333,
-      "RMSE": 249.2103470587158,
-      "MAPE (%)": 0.7954224778787378,
-      "R2": 0.9971374123719826
-    },
-    {
-      "Phương án": "Bỏ lag 3/6/18",
-      "Số biến": 40,
-      "CV MAE": 184.7320535651338,
-      "CV độ lệch chuẩn": 13.149130603177245,
-      "MAE": 164.10111451014947,
-      "RMSE": 248.77723301836707,
-      "MAPE (%)": 0.7971740321878135,
-      "R2": 0.9971459426766959
-    },
-    {
-      "Phương án": "Bỏ lịch sử tuần",
-      "Số biến": 43,
-      "CV MAE": 190.51799986954538,
-      "CV độ lệch chuẩn": 15.022422697778874,
-      "MAE": 166.33980753423285,
-      "RMSE": 250.69442668350248,
-      "MAPE (%)": 0.8130682398668846,
-      "R2": 0.9970903462563084
-    },
-    {
-      "Phương án": "Tập gọn",
-      "Số biến": 26,
-      "CV MAE": 242.1578888875155,
-      "CV độ lệch chuẩn": 41.57773182115648,
-      "MAE": 192.76793728544627,
-      "RMSE": 290.6699084134899,
-      "MAPE (%)": 0.9284770123394764,
-      "R2": 0.9961826634076864
-    }
+  "code_cells": 27,
+  "experiment_rows": 42,
+  "eligible_candidates": 30,
+  "stages": [
+    "Mốc giữ nguyên",
+    "Mô hình ban đầu",
+    "Thêm quá khứ và giờ",
+    "Thêm tuần và tháng",
+    "Áp dụng đầu vào cho các mô hình",
+    "Tìm tham số - Ridge",
+    "Tìm tham số - Lasso",
+    "Tìm tham số - KNN",
+    "Tìm tham số - Decision Tree",
+    "Tìm tham số - Random Forest",
+    "Tìm tham số - PCA + Ridge",
+    "Tìm tham số - MLP",
+    "Học mức tăng/giảm - Random Forest",
+    "Học mức tăng/giảm - MLP",
+    "Thử bỏ nhóm đầu vào"
   ],
-  "delta_comparison": [
-    {
-      "Model": "Random Forest (delta)",
-      "Validation MAE trước": 910.66172763463,
-      "CV MAE delta": 256.6403064149464,
-      "CV độ lệch chuẩn": 60.21784986898907,
-      "MAE": 196.35893350702722,
-      "RMSE": 306.53728131566226,
-      "MAPE (%)": 0.94815435314039,
-      "R2": 0.9959312959943377
-    },
-    {
-      "Model": "MLP (delta)",
-      "Validation MAE trước": 413.6241689224353,
-      "CV MAE delta": 228.38224295698092,
-      "CV độ lệch chuẩn": 40.51174512911242,
-      "MAE": 172.0830737305397,
-      "RMSE": 257.3163932379683,
-      "MAPE (%)": 0.8299292583770952,
-      "R2": 0.9970014588102849
-    }
-  ],
-  "feature_approval_rule": "Both CV MAE and validation MAE below baseline; not a significance test.",
-  "selected_feature_group": "+ Tuần",
-  "selected_features": 49,
+  "seconds": 1294.95,
   "train_rows": 32227,
   "validation_rows": 7861,
   "test_rows": 7862,
+  "selected_feature_group": "+ Tuần",
+  "selected_features": 49,
   "selected_model": "Linear",
-  "validation_mae": 163.7002081309757,
   "test_metrics": {
     "Train MAE": 174.87284439908908,
     "Train RMSE": 280.6288828483691,
@@ -125,11 +36,8 @@
     "Test MAPE (%)": 0.8951077907636116,
     "Test R2": 0.9966622253570177
   },
-  "seconds": 751.75,
   "warnings": [],
   "all_checks_passed": true,
-  "environment": "Local Python 3.12; outputs are from actual execution, not a Colab cloud run.",
-  "test_cadence_checks_passed": true,
-  "holdout_previously_scored": true,
-  "experiments_selected_using_test": false
+  "environment": "Actual local Python 3.12 execution; not a Colab cloud run.",
+  "test_policy": "Repeated descriptive evaluation only; choices based on train/CV/validation. Same previously used test set."
 }
