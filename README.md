@@ -25,6 +25,6 @@ Lần chạy đầy đủ trước khi tách ô (cùng phép tính) trên máy m
 
 [Bảng từng bước](reports/optimization_progression.csv) · [Mọi thử nghiệm](reports/all_experiment_results.csv) · [Ghi chú slide/report](docs/Bao_cuc_notebook_slide_report_vi.md)
 
-Chưa thử cây riêng từng khu vực hoặc kiểm tra riêng tác động sin/cos. Chưa tạo slide/report nộp cuối theo template. Các app và báo cáo tuần 10 cũ là tài liệu lịch sử; notebook và báo cáo liên kết đầu trang là bản hiện hành.
+Chưa thử cây riêng từng khu vực hoặc kiểm tra riêng tác động sin/cos.
 
 Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city), năm 2017 (CC BY 4.0); kiến thức lớp chương 11/13/14. Mã và giải thích tiếng Việt phục vụ nhóm học hiểu.
