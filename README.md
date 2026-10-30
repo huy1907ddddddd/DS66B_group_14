@@ -2,29 +2,36 @@
 
 DS66B, nhóm 14: Trần Quang Huy, Bùi Ngọc Thuấn, Nguyễn Hoàng Thành.
 
-[Colab chính](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Colab giải thích từng dòng](https://colab.research.google.com/drive/18pQmIPzSMiz7GdoDSPnbF6hFkfei8XvF) · [Kết quả hiện tại](reports/Next_Step_Results_vi.md)
+[Colab chính — tiếng Anh](https://colab.research.google.com/drive/1sNqD8rA6HrsUzjvDok5J7W1Zng2Qh5jQ) · [Colab giải thích từng dòng — tiếng Việt](https://colab.research.google.com/drive/18pQmIPzSMiz7GdoDSPnbF6hFkfei8XvF)
 
-Một notebook chạy toàn bộ trên Colab: Runtime → Run all. Bản giải thích có cùng phép tính/kết quả, thêm comment tiếng Việt từng dòng.
+Hai notebook trong notebooks/ tương ứng với hai bản Colab trên. Chạy từ đầu bằng Runtime → Run all. Dữ liệu được tải từ phiên bản CSV đã ghim trong repository.
 
 ## Mạch bài
 
-1. Đọc và chia ngay theo thời gian, xem dữ liệu thô rồi đổi tên/định dạng giờ; biểu đồ train.
-2. Persistence và tám mô hình với tám số đo hiện tại.
-3. Thêm quá khứ và giờ thành 40 biến; thử thêm tuần/tháng.
-4. Tìm tham số bằng CV thời gian, ba lượt, gap=1.
-5. Thử học mức tăng/giảm, thử bỏ nhóm đầu vào.
-6. Chốt bằng validation; bảng train/test, MAE từng khu vực/tuần/tháng, biểu đồ hai đường.
+1. Đọc dữ liệu, chia theo thời gian và kiểm tra dữ liệu train.
+2. So Persistence với sáu mô hình dùng tám số đo hiện tại: Linear, Ridge, Lasso, KNN, Decision Tree và Random Forest.
+3. Thêm lịch sử điện, thống kê trượt và biến thời gian. Chọn nhóm đầu vào riêng cho từng mô hình bằng MAE validation.
+4. Tìm tham số bằng ba lượt CV thời gian trong train, gap bằng một dòng.
+5. Thử RF dự báo mức tăng/giảm và thử bỏ nhóm đầu vào của Linear.
+6. Chốt mô hình bằng validation, rồi đối chiếu train/test và sai số từng zone.
+7. So với AR và VAR ở mục 10.1–10.3: tạo lag, chọn bậc bằng CV trong train và chấm trên cùng các thời điểm validation/test.
+8. Vẽ MAE theo tuần/tháng và dự báo Zone 1 trong ba giờ, 24 giờ và toàn bộ test; xuất CSV.
 
-Mỗi bước có bảng trước/sau gồm validation và test. Cấu hình chọn bằng train/CV/validation; test chỉ đối chiếu, không dùng chọn hướng thử tiếp. Test đã được chấm từ các bản trước, không phải kiểm chứng hoàn toàn mới.
+## Kết quả hiện tại
 
-## Kết quả đã chạy
+Các mô hình được chấm trên cùng 32.227 dòng train, 7.861 dòng validation và 7.862 dòng test. Linear được chọn với nhóm + Tuần, gồm 49 biến đầu vào.
 
-31 ô code sau khi tách bảng EDA; 42 hàng kết quả đối chiếu. Các bước cùng 32,227/7,861/7,862 dòng train/validation/test sau khi giữ chung mốc đủ lịch sử.
-Chọn bằng validation: Linear; nhóm + Tuần, 49 đầu vào. MAE test 173.5309.
-Lần chạy đầy đủ trước khi tách ô (cùng phép tính) trên máy mất 1295.0 giây; Colab có thể khác. Scaler/PCA chỉ fit trong train/CV. Giữ tìm Alpha, K và tham số cây/rừng/PCA/MLP.
+| Mô hình | MAE validation | MAE test |
+|---|---:|---:|
+| Persistence | 295,49 | 293,11 |
+| AR(12) | 203,35 | 208,07 |
+| VAR(12) | 196,25 | 226,52 |
+| Linear, 49 biến | 163,70 | 173,53 |
 
-[Bảng từng bước](reports/optimization_progression.csv) · [Mọi thử nghiệm](reports/all_experiment_results.csv) · [Ghi chú slide/report](docs/Bao_cuc_notebook_slide_report_vi.md)
+Linear giảm MAE test 40,8% so với Persistence, 16,6% so với AR(12) và 23,4% so với VAR(12). AR và VAR thử các bậc 1, 3, 6, 12, 18, 36; mỗi họ chọn bậc riêng bằng CV và cùng chọn 12. Scaler chỉ fit trên phần học của từng lượt.
 
-Chưa thử cây riêng từng khu vực hoặc kiểm tra riêng tác động sin/cos.
+[Điểm từng lượt CV](reports/arvar_lag_order_cv.csv) · [Bậc được chọn](reports/arvar_selected_orders.csv) · [Bảng so sánh](reports/arvar_model_comparison.csv)
 
-Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city), năm 2017 (CC BY 4.0); kiến thức lớp chương 11/13/14. Mã và giải thích tiếng Việt phục vụ nhóm học hiểu.
+Hai notebook lưu code và kết quả của bản hiện tại. Thư mục reports/ còn giữ các báo cáo của những giai đoạn trước. Các lựa chọn dựa trên train/CV/validation; tập test đã được xem trong quá trình phát triển.
+
+Nguồn: [UCI Tetouan](https://archive.ics.uci.edu/dataset/849/power+consumption+of+tetouan+city), dữ liệu năm 2017, giấy phép CC BY 4.0; [AR](https://otexts.com/fpp3/arima.html#autoregressive-models) và [VAR](https://otexts.com/fpp3/advanced.html#vector-autoregressions) theo Forecasting: Principles and Practice.
